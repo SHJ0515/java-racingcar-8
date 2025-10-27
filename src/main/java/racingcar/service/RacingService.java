@@ -30,6 +30,28 @@ public class RacingService {
         return cars;
     }
 
+    public List<String> findWinners() {
+        int winnerLocation = findWinnerLocation();
+        List<String> winners = new ArrayList<>();
+
+        for (Car car : cars) {
+            if (car.getCurrentLocation() == winnerLocation){
+                winners.add(car.getName());
+            }
+        }
+        return winners;
+    }
+
+    private int findWinnerLocation() {
+        int max = 0;
+        for (Car car : cars) {
+            if (car.getCurrentLocation() > max) {
+                max = car.getCurrentLocation();
+            }
+        }
+        return max;
+    }
+
     private List<Car> parseCar(String carNames) {
 
         String[] names = carNames.split(",");
