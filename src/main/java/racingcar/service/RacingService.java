@@ -12,10 +12,22 @@ public class RacingService {
     private int totalRound;
     private int currentRound;
 
-    public void initRacing(RacingInfoDto racingInfoDto) {
+    public void initRacingStatus(RacingInfoDto racingInfoDto) {
         this.cars = parseCar(racingInfoDto.getCars());
         this.totalRound = Integer.parseInt(racingInfoDto.getRound());
         this.currentRound = 0;
+    }
+
+    public boolean hasNextRound() {
+        return currentRound < totalRound;
+    }
+
+    public List<Car> playRound() {
+        for (Car car : cars) {
+            car.move();
+        }
+        currentRound++;
+        return cars;
     }
 
     private List<Car> parseCar(String carNames) {
