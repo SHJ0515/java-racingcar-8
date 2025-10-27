@@ -17,10 +17,10 @@ public class InputValidation {
     }
 
     private void validateCarNames(String carName) {
-        String[] names = carName.split(DELIMITER);
-
         validateNameIsEmpty(carName);
         validateConsecutiveCommas(carName);
+
+        String[] names = carName.split(DELIMITER);
         validateDuplicateNames(names);
         validateStartOrEndWithDelimiter(carName);
 
