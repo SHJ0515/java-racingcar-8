@@ -23,23 +23,19 @@ public class RacingController {
         this.racingService = new RacingService();
     }
 
-    public void run(){
+    public void run() {
         try {
             RacingInfoDto racingInfoDto = inputView.input();
-
-            //TODO: validation 구현
-            //      inputValidation.validate(racingInfoDto);
+            inputValidation.validate(racingInfoDto);
 
             racingService.initRacingStatus(racingInfoDto);
-
-            while (racingService.hasNextRound()){
+            while (racingService.hasNextRound()) {
                 List<Car> cars = racingService.playRound();
                 outputView.printRoundResult(cars);
             }
 
             outputView.printWinner(racingService.findWinners());
-        }
-        catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             throw e;
         }
