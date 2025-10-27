@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 public class Car {
     String name;
     int currentLocation;
@@ -15,5 +17,12 @@ public class Car {
 
     public int getCurrentLocation() {
         return currentLocation;
+    }
+
+    public void move() {
+        int randomNum = Randoms.pickNumberInRange(0, 9);
+        if (randomNum >= 4) {
+            currentLocation++;
+        }
     }
 }
